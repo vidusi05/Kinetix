@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kinetix - Premium Multi-Role Fitness Platform</title>
+  <!-- Google Fonts: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons for modern aesthetic UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div class="desktop-container">
+    <!-- Showcase header -->
+    <header class="showcase-header">
+      <div class="logo">
+        <span class="accent-glow-red">KINETIX</span>
+        <span class="role-badge" id="current-role-badge">Client View</span>
+      </div>
+      <p class="showcase-subtitle">Multi-Role Fitness Application Prototype</p>
+      
+      <!-- Role Switcher Control Panel -->
+      <div class="role-switcher-panel">
+        <button class="role-btn active" data-role="client">
+          <i class="fa-solid fa-user"></i>
+          <span>Client App</span>
+        </button>
+        <button class="role-btn" data-role="pt">
+          <i class="fa-solid fa-user-tie"></i>
+          <span>Trainer Portal</span>
+        </button>
+        <button class="role-btn" data-role="gymowner">
+          <i class="fa-solid fa-dumbbell"></i>
+          <span>Gym Owner</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area: Phone Mock and Explanation Panel -->
+    <main class="showcase-main">
+      <!-- Device Container -->
+      <div class="phone-frame-wrapper">
+        <div class="phone-glow"></div>
+        <div class="phone-device">
+          <!-- Speaker/Notch (Dynamic Island style) -->
+          <div class="phone-notch">
+            <div class="camera-lens"></div>
+            <div class="dynamic-island-content" id="island-content">
+              <span class="island-text"><i class="fa-solid fa-bolt text-red"></i> Kinetix Core</span>
+            </div>
+          </div>
+          
+          <!-- Screen Container -->
+          <div class="phone-screen">
+            <!-- Status Bar -->
+            <div class="status-bar">
+              <span class="status-time" id="status-time">09:41</span>
+              <div class="status-icons">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-three-quarters"></i>
+              </div>
+            </div>
+
+            <!-- Toast Notification Banner -->
+            <div class="toast-notification" id="toast-notification">
+              <i class="fa-solid fa-bell"></i>
+              <div class="toast-content">
+                <p class="toast-title">Notification</p>
+                <p class="toast-body">Message details here...</p>
+              </div>
+            </div>
+
+            <!-- APP CONTENT (DYNAMIC SCREENS) -->
+            <div class="app-viewport" id="app-viewport">
+              
+              <!-- ============================================== -->
+              <!-- 1. CLIENT / USER VIEWS                         -->
+              <!-- ============================================== -->
+              
+              <!-- Screen: Discover (Gyms and Trainers) -->
+              <section class="app-screen active" id="screen-client-discover">
+                <div class="screen-header">
+                  <h1>Find Elite Coaching</h1>
+                  <p class="text-muted">Browse top facilities and trainers near you</p>
+                </div>
+                
+                <div class="search-bar-wrapper">
+                  <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                  <input type="text" placeholder="Search gyms, trainers, locations..." class="search-input">
+                  <button class="filter-btn"><i class="fa-solid fa-sliders"></i></button>
+                </div>
+
+                <div class="section-title-row">
+                  <h2>Local Elite Gyms</h2>
+                  <span class="see-all">See All</span>
+                </div>
+                <!-- Gym Cards Horizontal Scroll -->
+                <div class="horizontal-scroll" id="gyms-list">
+                  <!-- Dynamic or Hardcoded beautiful gym cards -->
+                  <div class="card-gym">
+                    <div class="card-image-placeholder gym-1">
+                      <div class="card-gradient"></div>
+                      <span class="rating-badge"><i class="fa-solid fa-star"></i> 4.9</span>
+                    </div>
+                    <div class="card-info">
+                      <div class="card-header-row">
+                        <h3>Iron Forge Athletics</h3>
+                        <span class="badge badge-red">Verified</span>
+                      </div>
+                      <p class="card-sub"><i class="fa-solid fa-location-dot"></i> Downtown • 1.2 miles</p>
+                      <div class="badge-row">
+                        <span class="tag-badge">Heavy Weights</span>
+                        <span class="tag-badge">Sauna & Cold Plunge</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="card-gym">
+                    <div class="card-image-placeholder gym-2">
+                      <div class="card-gradient"></div>
+                      <span class="rating-badge"><i class="fa-solid fa-star"></i> 4.8</span>
+                    </div>
+                    <div class="card-info">
+                      <div class="card-header-row">
+                        <h3>Viper Pit Boxing</h3>
+                        <span class="badge badge-red">Elite Partner</span>
+                      </div>
+                      <p class="card-sub"><i class="fa-solid fa-location-dot"></i> Industrial District • 3.5 miles</p>
+                      <div class="badge-row">
+                        <span class="tag-badge">Combat Sports</span>
+                        <span class="tag-badge">24/7 Access</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="section-title-row">
+                  <h2>Certified Trainers</h2>
+                </div>
+                
+                <!-- Trainers Grid List -->
+                <div class="trainers-grid" id="trainers-list">
+                  <!-- Trainer Card 1 -->
+                  <div class="card-trainer">
+                    <div class="trainer-avatar-wrapper">
+                      <div class="trainer-avatar trainer-1"></div>
+                      <span class="active-dot"></span>
+                    </div>
+                    <div class="trainer-info">
+                      <div class="trainer-header-row">
+                        <h3>Coach Marcus Vance</h3>
+                        <span class="exp-badge"><i class="fa-solid fa-award"></i> 8 Yrs Exp</span>
+                      </div>
+                      <p class="trainer-specialty">Strength & Powerlifting</p>
+                      <div class="trainer-badges">
+                        <span class="tag-badge">CSCS Certified</span>
+                        <span class="tag-badge">Nutritionist</span>
+                      </div>
+                      <div class="trainer-footer">
+                        <span class="trainer-price">$75<span class="text-sm">/hr</span></span>
+                        <button class="btn-book-quick" data-trainer="Marcus Vance">Book PT</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Trainer Card 2 -->
+                  <div class="card-trainer">
+                    <div class="trainer-avatar-wrapper">
+                      <div class="trainer-avatar trainer-2"></div>
+                      <span class="active-dot"></span>
+                    </div>
+                    <div class="trainer-info">
+                      <div class="trainer-header-row">
+                        <h3>Sergeant Elena Rostova</h3>
+                        <span class="exp-badge"><i class="fa-solid fa-award"></i> 12 Yrs Exp</span>
+                      </div>
+                      <p class="trainer-specialty">Military Fitness & HIIT</p>
+                      <div class="trainer-badges">
+                        <span class="tag-badge">Ex-Spetsnaz</span>
+                        <span class="tag-badge">Conditioning</span>
+                      </div>
+                      <div class="trainer-footer">
+                        <span class="trainer-price">$90<span class="text-sm">/hr</span></span>
+                        <button class="btn-book-quick" data-trainer="Elena Rostova">Book PT</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Screen: Booking (Tiered Packages) -->
+              <section class="app-screen" id="screen-client-booking">
+                <div class="screen-header">
+                  <h1>Elite Memberships</h1>
+                  <p class="text-muted">Choose your intensity level and lock in your rate</p>
+                </div>
+
+                <!-- Tiered Package Segmented Controls -->
+                <div class="segmented-control-container">
+                  <div class="segmented-control">
+                    <button class="segmented-option active" data-tier-type="pt-only">PT Only</button>
+                    <button class="segmented-option" data-tier-type="pt-gym">PT + Gym</button>
+                    <button class="segmented-option" data-tier-type="gym-only">Gym Only</button>
+                  </div>
+                </div>
+
+                <!-- Packages List Container -->
+                <div class="packages-list" id="packages-list-container">
+                  <!-- Dynamic pricing tier cards will render here depending on active segmented option -->
+                </div>
+
+                <!-- Custom Request Gym/PT Section -->
+                <div class="custom-request-box">
+                  <div class="box-icon"><i class="fa-solid fa-sliders text-red"></i></div>
+                  <div class="box-text">
+                    <h3>Need a custom plan?</h3>
+                    <p class="text-muted">Configure a bespoke program directly with our consultants.</p>
+                  </div>
+                  <button class="btn-outline-small">Contact</button>
+                </div>
+              </section>
+
+              <!-- Screen: Workout Tracker & Workout Mode -->
+              <section class="app-screen" id="screen-client-workout">
+                <!-- Standard Workout Tracker Dashboard -->
+                <div id="workout-tracker-dashboard">
+                  <div class="screen-header">
+                    <h1>Strength Hub</h1>
+                    <p class="text-muted">Fuel your progress, track your metrics</p>
+                  </div>
+
+                  <!-- Quick Stats Grid -->
+                  <div class="stats-grid">
+                    <div class="stat-card">
+                      <span class="stat-label">Weekly Vol</span>
+                      <span class="stat-val">42,500 <span class="unit">lbs</span></span>
+                      <span class="stat-change positive"><i class="fa-solid fa-arrow-trend-up"></i> +8.2%</span>
+                    </div>
+                    <div class="stat-card">
+                      <span class="stat-label">Completed</span>
+                      <span class="stat-val">4 <span class="unit">sessions</span></span>
+                      <span class="stat-change positive"><i class="fa-solid fa-circle-check"></i> On track</span>
+                    </div>
+                  </div>
+
+                  <!-- Custom progress chart (Visualized with SVG) -->
+                  <div class="analytics-card">
+                    <h3>Performance History</h3>
+                    <div class="chart-container">
+                      <div class="chart-bars">
+                        <div class="chart-bar-wrapper">
+                          <div class="bar-fill" style="height: 60%"></div>
+                          <span class="bar-label">Mon</span>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                          <div class="bar-fill" style="height: 45%"></div>
+                          <span class="bar-label">Tue</span>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                          <div class="bar-fill" style="height: 85%"></div>
+                          <span class="bar-label">Wed</span>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                          <div class="bar-fill" style="height: 30%"></div>
+                          <span class="bar-label">Thu</span>
+                        </div>
+                        <div class="chart-bar-wrapper">
+                          <div class="bar-fill current" style="height: 95%">
+                            <div class="pulse-point"></div>
+                          </div>
+                          <span class="bar-label text-red">Today</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Active Workout routines -->
+                  <div class="section-title-row">
+                    <h2>Your Workout Programs</h2>
+                  </div>
+                  
+                  <div class="routine-card">
+                    <div class="routine-meta">
+                      <div>
+                        <h3>Hypertrophy Push Alpha</h3>
+                        <p class="text-muted">Target: Chest, Shoulders, Triceps</p>
+                      </div>
+                      <span class="difficulty-tag hard">Advanced</span>
+                    </div>
+                    <div class="routine-stats">
+                      <span><i class="fa-regular fa-clock"></i> 55 Mins</span>
+                      <span><i class="fa-solid fa-dumbbell"></i> 6 Exercises</span>
+                    </div>
+                    <button class="btn-primary-block" id="btn-start-workout-mode">
+                      <i class="fa-solid fa-play"></i> Start Active Workout
+                    </button>
+                  </div>
+                </div>
+
+                <!-- ================= ACTIVE WORKOUT MODE ================= -->
+                <!-- Fully covers tracker view when workout is active -->
+                <div id="workout-active-mode" class="hidden">
+                  <div class="active-workout-header">
+                    <div class="active-workout-title-group">
+                      <span class="live-indicator"><span class="dot"></span> LIVE SESSION</span>
+                      <h2>Hypertrophy Push Alpha</h2>
+                    </div>
+                    <button class="btn-exit-workout" id="btn-cancel-workout"><i class="fa-solid fa-xmark"></i></button>
+                  </div>
+
+                  <!-- Workout Progress Bar -->
+                  <div class="workout-progress-container">
+                    <div class="progress-info">
+                      <span>Progress</span>
+                      <span id="workout-progress-percentage">0%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                      <div class="progress-bar-fill" id="workout-progress-bar" style="width: 0%"></div>
+                    </div>
+                  </div>
+
+                  <!-- Active Workout Table/Chart -->
+                  <div class="workout-table-container">
+                    <table class="workout-table">
+                      <thead>
+                        <tr>
+                          <th>Exercise Details</th>
+                          <th>Sets</th>
+                          <th>Reps</th>
+                          <th style="text-align: center;">Done</th>
+                        </tr>
+                      </thead>
+                      <tbody id="active-workout-tbody">
+                        <!-- Populated by JavaScript -->
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <!-- Active Workout Footer Controls -->
+                  <div class="active-workout-footer">
+                    <div class="timer-display" id="workout-timer">00:00</div>
+                    <button class="btn-complete-session" id="btn-complete-workout" disabled>
+                      <i class="fa-solid fa-circle-check"></i> Finish Workout
+                    </button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Screen: Community Forum -->
+              <section class="app-screen" id="screen-client-forum">
+                <div class="screen-header">
+                  <h1>Iron Community</h1>
+                  <p class="text-muted">Connect, share knowledge, and learn from PTs</p>
+                </div>
+
+                <!-- Forum Navigation Categories -->
+                <div class="forum-categories">
+                  <button class="forum-cat-tab active" data-category="all">All</button>
+                  <button class="forum-cat-tab" data-category="general">General</button>
+                  <button class="forum-cat-tab" data-category="nutrition">Nutrition</button>
+                  <button class="forum-cat-tab" data-category="pt-exclusive">PT Q&A</button>
+                </div>
+
+                <!-- Forum Feed List -->
+                <div class="forum-feed" id="forum-feed-list">
+                  <!-- Populated by JS for threaded navigation -->
+                </div>
+
+                <!-- Thread Detail View (Modal Style or Full view) -->
+                <div id="forum-thread-detail" class="hidden">
+                  <button class="btn-back-forum" id="btn-back-to-feed"><i class="fa-solid fa-arrow-left"></i> Back to Feed</button>
+                  <div class="thread-detail-container" id="thread-detail-content">
+                    <!-- Dynamic thread contents and comments -->
+                  </div>
+                </div>
+              </section>
+              
+              <!-- ============================================== -->
+              <!-- 2. PERSONAL TRAINER (PT) VIEWS                 -->
+              <!-- ============================================== -->
+              
+              <!-- Screen: PT Client Chat -->
+              <section class="app-screen" id="screen-pt-chat">
+                <!-- Chat Master/Client List View -->
+                <div id="pt-chat-client-list">
+                  <div class="screen-header">
+                    <h1>Client Terminal</h1>
+                    <p class="text-muted">Direct messaging and progress updates</p>
+                  </div>
+
+                  <div class="chat-search">
+                    <input type="text" placeholder="Search clients..." class="search-input-small">
+                  </div>
+
+                  <div class="client-conversations-list">
+                    <!-- Client Conversational Card -->
+                    <div class="client-chat-card active-chat" data-client-id="client-marcus">
+                      <div class="trainer-avatar-wrapper">
+                        <div class="trainer-avatar client-avatar-1"></div>
+                        <span class="active-dot online"></span>
+                      </div>
+                      <div class="chat-card-info">
+                        <div class="chat-card-header">
+                          <h3>Marcus Vance</h3>
+                          <span class="chat-time">12:30 PM</span>
+                        </div>
+                        <p class="chat-last-msg">Coach, I finished the squats. My knees felt perfect today!</p>
+                      </div>
+                      <div class="badge-unread">1</div>
+                    </div>
+
+                    <div class="client-chat-card" data-client-id="client-elena">
+                      <div class="trainer-avatar-wrapper">
+                        <div class="trainer-avatar client-avatar-2"></div>
+                        <span class="active-dot online"></span>
+                      </div>
+                      <div class="chat-card-info">
+                        <div class="chat-card-header">
+                          <h3>Elena Rostova</h3>
+                          <span class="chat-time">Yesterday</span>
+                        </div>
+                        <p class="chat-last-msg">Can you check my macro breakdown? I've updated my food journal.</p>
+                      </div>
+                    </div>
+
+                    <div class="client-chat-card" data-client-id="client-drake">
+                      <div class="trainer-avatar-wrapper">
+                        <div class="trainer-avatar client-avatar-3"></div>
+                        <span class="active-dot offline"></span>
+                      </div>
+                      <div class="chat-card-info">
+                        <div class="chat-card-header">
+                          <h3>Drake Harrison</h3>
+                          <span class="chat-time">Jun 5</span>
+                        </div>
+                        <p class="chat-last-msg">Understood. I will push through the chest press session tonight.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Chat Room Window View (Active Chat) -->
+                <div id="pt-chat-room" class="hidden">
+                  <div class="chat-room-header">
+                    <button class="btn-back-chat" id="btn-back-to-clients"><i class="fa-solid fa-arrow-left"></i></button>
+                    <div class="chat-header-user">
+                      <div class="trainer-avatar client-avatar-1 header-avatar" id="chat-header-avatar"></div>
+                      <div>
+                        <h3 id="chat-header-name">Marcus Vance</h3>
+                        <p class="status-subtitle"><span class="bullet-green"></span> Online</p>
+                      </div>
+                    </div>
+                    <div class="chat-header-actions">
+                      <button class="chat-action-btn"><i class="fa-solid fa-phone"></i></button>
+                      <button class="chat-action-btn"><i class="fa-solid fa-circle-info"></i></button>
+                    </div>
+                  </div>
+
+                  <!-- Chat Messages Container -->
+                  <div class="chat-messages-body" id="chat-messages-container">
+                    <!-- Populated by JS -->
+                  </div>
+
+                  <!-- Chat Input Area -->
+                  <div class="chat-input-bar">
+                    <button class="chat-attach-btn"><i class="fa-solid fa-plus"></i></button>
+                    <input type="text" placeholder="Type instructions or feedback..." id="chat-message-input">
+                    <button class="chat-send-btn" id="btn-send-message"><i class="fa-solid fa-paper-plane"></i></button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Screen: PT Routine Builder -->
+              <section class="app-screen" id="screen-pt-builder">
+                <div class="screen-header">
+                  <h1>Routine Architect</h1>
+                  <p class="text-muted">Design & customize high-intensity workouts</p>
+                </div>
+
+                <div class="routine-selector-row">
+                  <label for="routine-select" class="form-label-small">Editing Routine:</label>
+                  <select id="routine-select" class="dark-select">
+                    <option value="push-alpha">Hypertrophy Push Alpha</option>
+                    <option value="pull-strength">Pull Strength Focus</option>
+                    <option value="leg-demolition">Lower Body Demolition</option>
+                  </select>
+                </div>
+
+                <!-- Routine Reorderable List -->
+                <div class="builder-routine-list" id="builder-routine-list">
+                  <!-- Populated by JS with order buttons, edit capability -->
+                </div>
+
+                <!-- Add exercise form -->
+                <div class="add-exercise-form">
+                  <h3><i class="fa-solid fa-circle-plus text-red"></i> Add Exercise</h3>
+                  <div class="form-grid">
+                    <div class="form-group-col full-width">
+                      <input type="text" id="add-ex-name" placeholder="Exercise Name (e.g. Incline DB Press)">
+                    </div>
+                    <div class="form-group-col">
+                      <input type="number" id="add-ex-sets" placeholder="Sets" min="1" max="10">
+                    </div>
+                    <div class="form-group-col">
+                      <input type="text" id="add-ex-reps" placeholder="Reps (e.g. 10 or 8-12)">
+                    </div>
+                  </div>
+                  <button class="btn-secondary-block margin-top-sm" id="btn-add-exercise-submit">
+                    Add to Routine
+                  </button>
+                </div>
+
+                <button class="btn-primary-block margin-top-lg" id="btn-save-routine">
+                  <i class="fa-solid fa-floppy-disk"></i> Save & Publish Routine
+                </button>
+              </section>
+              
+              <!-- ============================================== -->
+              <!-- 3. GYM OWNER VIEWS                             -->
+              <!-- ============================================== -->
+              
+              <!-- Screen: Gym Owner Facility Registration -->
+              <section class="app-screen" id="screen-owner-register">
+                <div class="screen-header">
+                  <h1>Register Facility</h1>
+                  <p class="text-muted">List your gym on Kinetix to gain massive client exposure</p>
+                </div>
+
+                <!-- Verification Status Box -->
+                <div class="verification-status-banner pending" id="facility-status-banner">
+                  <div class="status-icon-wrapper">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                  </div>
+                  <div class="status-text-wrapper">
+                    <h4>Registration Status</h4>
+                    <p id="facility-status-text">Drafting - Ready to submit</p>
+                  </div>
+                </div>
+
+                <form class="gym-registration-form" id="gym-reg-form">
+                  <div class="form-group">
+                    <label for="gym-name">Gym Facility Name <span class="required">*</span></label>
+                    <input type="text" id="gym-name" placeholder="e.g. Titan Strength Compound" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="gym-address">Full Address <span class="required">*</span></label>
+                    <input type="text" id="gym-address" placeholder="e.g. 42 Power Blvd, Austin, TX" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="gym-desc">Facility Description</label>
+                    <textarea id="gym-desc" placeholder="Describe your gym, equipment, and unique perks..."></textarea>
+                  </div>
+
+                  <div class="form-row-2">
+                    <div class="form-group">
+                      <label for="gym-price">Monthly Gym-Only Fee ($) <span class="required">*</span></label>
+                      <input type="number" id="gym-price" placeholder="49" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="gym-capacity">Max Capacity (Members)</label>
+                      <input type="number" id="gym-capacity" placeholder="500">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Premium Amenities</label>
+                    <div class="amenities-checkbox-grid">
+                      <label class="checkbox-container">
+                        <input type="checkbox" name="amenity" value="sauna">
+                        <span class="custom-checkbox"></span>
+                        Sauna & Steam
+                      </label>
+                      <label class="checkbox-container">
+                        <input type="checkbox" name="amenity" value="plunge">
+                        <span class="custom-checkbox"></span>
+                        Cold Plunge
+                      </label>
+                      <label class="checkbox-container">
+                        <input type="checkbox" name="amenity" value="boxing">
+                        <span class="custom-checkbox"></span>
+                        Boxing Ring
+                      </label>
+                      <label class="checkbox-container">
+                        <input type="checkbox" name="amenity" value="pt-zone">
+                        <span class="custom-checkbox"></span>
+                        PT Dedicated Zone
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Business Verification Document</label>
+                    <div class="file-upload-zone" id="file-upload-zone">
+                      <i class="fa-solid fa-file-shield upload-icon"></i>
+                      <p>Drag & drop business license or gym permit</p>
+                      <span class="file-size-limit">PDF, JPG, PNG (Max 5MB)</span>
+                      <input type="file" id="gym-file-input" style="display: none;">
+                      <div class="uploaded-file-name" id="uploaded-file-name">No file selected</div>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn-primary-block margin-top-md">
+                    <i class="fa-solid fa-paper-plane"></i> Submit Gym Registration
+                  </button>
+                </form>
+              </section>
+
+              <!-- Screen: Gym Owner Trainer Management -->
+              <section class="app-screen" id="screen-owner-trainers">
+                <div class="screen-header">
+                  <h1>Trainer Roster</h1>
+                  <p class="text-muted">Manage listed trainers, reviews, and status badges</p>
+                </div>
+
+                <div class="action-bar-owner">
+                  <button class="btn-outline-small" id="btn-add-mock-trainer">
+                    <i class="fa-solid fa-plus"></i> Invite New Trainer
+                  </button>
+                </div>
+
+                <!-- Trainers Management Grid -->
+                <div class="owner-trainers-list" id="owner-trainers-list">
+                  <!-- Dynamically populated or state-managed cards -->
+                </div>
+              </section>
+
+            </div>
+
+            <!-- DYNAMIC BOTTOM NAVIGATION BAR -->
+            <!-- Navigation items change based on active Role -->
+            <nav class="bottom-nav" id="bottom-nav">
+              <!-- Elements injected by JavaScript -->
+            </nav>
+            
+          </div>
+        </div>
+      </div>
+
+      <!-- Instructions & Details side panel -->
+      <section class="showcase-info-panel">
+        <div class="panel-card">
+          <h2 class="text-red">Kinetix System Tour</h2>
+          <p class="text-muted">Kinetix is configured with custom styles in dark crimson red, purple tones, and stark onyx. Review features by toggling the roles below or clicking directly within the mock interface.</p>
+          
+          <div class="feature-bullets">
+            <div class="feature-bullet">
+              <span class="bullet-number">1</span>
+              <div>
+                <strong>Client App Interface</strong>
+                <p>Features horizontal gym discoveries, dynamic segmented booking, PT forums, and active workouts with check-off sheets.</p>
+              </div>
+            </div>
+            
+            <div class="feature-bullet">
+              <span class="bullet-number">2</span>
+              <div>
+                <strong>Trainer Portal</strong>
+                <p>Simulate client chats with live typing responses, and customize exercise routines with re-ordering buttons.</p>
+              </div>
+            </div>
+            
+            <div class="feature-bullet">
+              <span class="bullet-number">3</span>
+              <div>
+                <strong>Gym Owner Dashboard</strong>
+                <p>Register gyms with validation, upload verification files, and manage roster approval statuses.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tech-specs">
+            <h4>Interface Specifications</h4>
+            <ul>
+              <li><i class="fa-solid fa-circle-check text-purple"></i> Custom Dark Mode System</li>
+              <li><i class="fa-solid fa-circle-check text-purple"></i> Clean Grid & Flexbox layouts</li>
+              <li><i class="fa-solid fa-circle-check text-purple"></i> Dynamic CSS transitions</li>
+              <li><i class="fa-solid fa-circle-check text-purple"></i> Single Page JS-State routing</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="showcase-footer">
+      <p>&copy; 2026 Kinetix Fitness Platform. Created with Vanilla Web Technology.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
