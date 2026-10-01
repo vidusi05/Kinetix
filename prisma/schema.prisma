@@ -1,0 +1,264 @@
+// Prisma Schema for Kinetix - Premium Multi-Role Fitness Platform
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ==========================================
+// ENUMS
+// ==========================================
+
+enum UserRole {
+  CLIENT
+  TRAINER
+  GYM_OWNER
+  ADMIN
+}
+
+enum FacilityStatus {
+  DRAFT
+  PENDING_REVIEW
+  VERIFIED
+  REJECTED
+}
+
+enum TierType {
+  PT_ONLY
+  PT_GYM
+  GYM_ONLY
+}
+
+enum RosterStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum WorkoutStatus {
+  IN_PROGRESS
+  COMPLETED
+  ABANDONED
+}
+
+// ==========================================
+// NEXTAUTH MODELS
+// ==========================================
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ==========================================
+// KINETIX DOMAIN MODELS
+// ==========================================
+
+model User {
+  id            String          @id @default(cuid())
+  email         String          @unique
+  emailVerified DateTime?
+  name          String
+  password      String?
+  role          UserRole        @default(CLIENT)
+  avatarUrl     String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+
+  // Role Specific Relations
+  ownedGyms         GymFacility[]      @relation("GymOwner")
+  trainerProfile    TrainerProfile?
+  workoutSessions   WorkoutSession[]
+  sentMessages      ChatMessage[]      @relation("SentMessages")
+  receivedMessages  ChatMessage[]      @relation("ReceivedMessages")
+  forumThreads      ForumThread[]
+  forumComments     ForumComment[]
+  purchasedPackages UserPackage[]
+}
+
+model GymFacility {
+  id              String         @id @default(cuid())
+  name            String
+  description     String
+  address         String
+  city            String
+  phone           String?
+  status          FacilityStatus @default(DRAFT)
+  amenities       String[]
+  verificationDoc String?
+  ownerId         String
+  owner           User           @relation("GymOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  trainers        TrainerProfile[]
+  packages        MembershipPackage[]
+}
+
+model TrainerProfile {
+  id           String        @id @default(cuid())
+  userId       String        @unique
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gymId        String?
+  gym          GymFacility?  @relation(fields: [gymId], references: [id], onDelete: SetNull)
+  specialties  String[]
+  bio          String
+  hourlyRate   Float
+  rosterStatus RosterStatus  @default(PENDING)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  routines     Routine[]
+}
+
+model MembershipPackage {
+  id          String        @id @default(cuid())
+  name        String
+  price       Float
+  description String
+  tierType    TierType
+  features    String[]
+  isPopular   Boolean       @default(false)
+  gymId       String?
+  gym         GymFacility?  @relation(fields: [gymId], references: [id], onDelete: Cascade)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  userPackages UserPackage[]
+}
+
+model UserPackage {
+  id          String            @id @default(cuid())
+  userId      String
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  packageId   String
+  package     MembershipPackage @relation(fields: [packageId], references: [id], onDelete: Cascade)
+  active      Boolean           @default(true)
+  purchasedAt DateTime          @default(now())
+}
+
+model Routine {
+  id          String         @id @default(cuid())
+  title       String
+  slug        String         @unique
+  description String?
+  targetGroup String
+  authorId    String
+  author      TrainerProfile @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  exercises       Exercise[]
+  workoutSessions WorkoutSession[]
+}
+
+model Exercise {
+  id          String          @id @default(cuid())
+  routineId   String
+  routine     Routine         @relation(fields: [routineId], references: [id], onDelete: Cascade)
+  name        String
+  targetSets  Int
+  targetReps  String
+  orderIndex  Int
+  createdAt   DateTime        @default(now())
+
+  setLogs     WorkoutSetLog[]
+}
+
+model WorkoutSession {
+  id              String          @id @default(cuid())
+  userId          String
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  routineId       String
+  routine         Routine         @relation(fields: [routineId], references: [id], onDelete: Cascade)
+  status          WorkoutStatus   @default(IN_PROGRESS)
+  durationSeconds Int             @default(0)
+  startedAt       DateTime        @default(now())
+  completedAt     DateTime?
+
+  setLogs         WorkoutSetLog[]
+}
+
+model WorkoutSetLog {
+  id               String         @id @default(cuid())
+  workoutSessionId String
+  workoutSession   WorkoutSession @relation(fields: [workoutSessionId], references: [id], onDelete: Cascade)
+  exerciseId       String
+  exercise         Exercise       @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  setNumber        Int
+  repsCompleted    Int
+  weightLbs        Float          @default(0)
+  isCompleted      Boolean        @default(false)
+  createdAt        DateTime       @default(now())
+}
+
+model ChatMessage {
+  id         String   @id @default(cuid())
+  senderId   String
+  sender     User     @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  receiverId String
+  receiver   User     @relation("ReceivedMessages", fields: [receiverId], references: [id], onDelete: Cascade)
+  content    String
+  sentAt     DateTime @default(now())
+}
+
+model ForumThread {
+  id        String         @id @default(cuid())
+  title     String
+  content   String
+  category  String
+  authorId  String
+  author    User           @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  comments  ForumComment[]
+}
+
+model ForumComment {
+  id        String      @id @default(cuid())
+  threadId  String
+  thread    ForumThread @relation(fields: [threadId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  content   String
+  createdAt DateTime    @default(now())
+}
